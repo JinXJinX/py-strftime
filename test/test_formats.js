@@ -2,7 +2,7 @@ var assert = require('assert');
 
 var _ = require('underscore');
 
-var dateFormat = require('../lib/dateformat');
+var strftime = require('../lib/strftime');
 
 var expects = {
   'default':               'Wed Nov 26 2014 13:19:44',
@@ -47,7 +47,7 @@ function timezoneOffset(date) {
 }
 
 describe('dateformat([now], [mask])', function() {
-  _.each(dateFormat.masks, function(value, key) {
+  _.each(strftime.masks, function(value, key) {
     it('should format `' + key + '` mask', function(done) {
       var now = new Date(2014, 10, 26, 13, 19, 44);
       var tzOffset = timezoneOffset(now);
@@ -60,7 +60,7 @@ describe('dateformat([now], [mask])', function() {
                      now.getMinutes() - offset.minutes);
         var expected = now.toISOString().replace(/\.000/g, '');
       }
-      var actual = dateFormat(now, key);
+      var actual = strftime(now, key);
       assert.strictEqual(actual, expected);
       done();
     });
@@ -68,7 +68,7 @@ describe('dateformat([now], [mask])', function() {
   it('should use `default` mask, when `mask` is empty', function(done) {
     var now = new Date(2014, 10, 26, 13, 19, 44);
     var expected = expects['default'];
-    var actual = dateFormat(now);
+    var actual = strftime(now);
 
     assert.strictEqual(actual, expected);
     done();

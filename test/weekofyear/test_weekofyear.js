@@ -1,4 +1,4 @@
-var dateFormat = require('../lib/dateformat.js');
+var strftime = require('../lib/strftime.js');
 
 var val = process.argv[2] || new Date();
-console.log(dateFormat(val, 'W'));
+console.log(strftime(val, 'W'));

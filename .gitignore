@@ -53,5 +53,6 @@ Desktop.ini
 npm-debug.log
 .directory
 ._*
+package-lock.json
 
 koa-better-body

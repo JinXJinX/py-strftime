@@ -1,16 +1,13 @@
 {
-  "name": "dateformat",
+  "name": "strftime",
   "description": "A node.js package for Steven Levithan's excellent dateFormat() function.",
   "maintainers": "Felix Geisendörfer <felix@debuggable.com>",
-  "homepage": "https://github.com/felixge/node-dateformat",
-  "author": "Steven Levithan",
+  "homepage": "https://github.com/JinXJinX/strftime.js",
+  "author": "JinX",
   "contributors": [
-    "Steven Levithan",
-    "Felix Geisendörfer <felix@debuggable.com>",
-    "Christoph Tavan <dev@tavan.de>",
-    "Jon Schlinkert (https://github.com/jonschlinkert)"
+    "JinX"
   ],
-  "version": "3.0.3",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "lib/dateformat",
   "devDependencies": {
@@ -25,6 +22,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/felixge/node-dateformat.git"
+    "url": "https://github.com/JinXJinX/strftime.js.git"
   }
 }
