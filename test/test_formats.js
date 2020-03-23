@@ -5,19 +5,26 @@ var _ = require('underscore');
 var strftime = require('../lib/strftime');
 
 var expects = {
-  'default':               'Wed Nov 26 2014 13:19:44',
-  'shortDate':             '11/26/14',
-  'mediumDate':            'Nov 26, 2014',
-  'longDate':              'November 26, 2014',
-  'fullDate':              'Wednesday, November 26, 2014',
-  'shortTime':             '1:19 PM',
-  'mediumTime':            '1:19:44 PM',
-  'longTime':              '1:19:44 PM %TZ_PREFIX%%TZ_OFFSET%',
-  'isoDate':               '2014-11-26',
-  'isoTime':               '13:19:44',
-  'isoDateTime':           '2014-11-26T13:19:44%TZ_OFFSET%',
-  'isoUtcDateTime':        '',
-  'expiresHeaderFormat':   'Wed, 26 Nov 2014 13:19:44 %TZ_PREFIX%%TZ_OFFSET%'
+  '%a %b %d %Y %-H:%M:%S': 'Fri Nov 07 2014 13:07:07',
+  '%m/%-d/%y': '11/7/14',
+  '%b %d, %Y': 'Nov 07, 2014',
+  '': 'Fri Nov 07 13:07:07 2014',
+  '%c': 'Fri Nov 07 13:07:07 2014',
+  '%x': '11/07/14',
+  '%X': '13:07:07',
+  // 'default':               'Wed Nov 26 2014 13:19:44',
+  // 'shortDate':             '11/26/14',
+  // 'mediumDate':            'Nov 26, 2014',
+  // 'longDate':              'November 26, 2014',
+  // 'fullDate':              'Wednesday, November 26, 2014',
+  // 'shortTime':             '1:19 PM',
+  // 'mediumTime':            '1:19:44 PM',
+  // 'longTime':              '1:19:44 PM %TZ_PREFIX%%TZ_OFFSET%',
+  // 'isoDate':               '2014-11-26',
+  // 'isoTime':               '13:19:44',
+  // 'isoDateTime':           '2014-11-26T13:19:44%TZ_OFFSET%',
+  // 'isoUtcDateTime':        '',
+  // 'expiresHeaderFormat':   'Wed, 26 Nov 2014 13:19:44 %TZ_PREFIX%%TZ_OFFSET%'
 };
 
 function pad(num, size) {
@@ -47,30 +54,25 @@ function timezoneOffset(date) {
 }
 
 describe('dateformat([now], [mask])', function() {
-  _.each(strftime.masks, function(value, key) {
+  _.each(expects, function (value, key) {
     it('should format `' + key + '` mask', function(done) {
-      var now = new Date(2014, 10, 26, 13, 19, 44);
+      var now = new Date(2014, 10, 7, 13, 7, 7);
       var tzOffset = timezoneOffset(now);
       var expected = expects[key].replace(/%TZ_PREFIX%/, 'GMT')
                                  .replace(/%TZ_OFFSET%/g, tzOffset)
                                  .replace(/GMT\+0000/g, 'UTC');
-      if (key === 'isoUtcDateTime') {
-        var offset = parseOffset(now);
-        now.setHours(now.getHours() - offset.hours,
-                     now.getMinutes() - offset.minutes);
-        var expected = now.toISOString().replace(/\.000/g, '');
-      }
+
       var actual = strftime(now, key);
       assert.strictEqual(actual, expected);
       done();
     });
-  });
-  it('should use `default` mask, when `mask` is empty', function(done) {
-    var now = new Date(2014, 10, 26, 13, 19, 44);
-    var expected = expects['default'];
-    var actual = strftime(now);
-
-    assert.strictEqual(actual, expected);
-    done();
-  });
+  })
+  // it('should use `default` mask, when `mask` is empty', function(done) {
+  //   var now = new Date(2014, 10, 26, 13, 19, 44);
+  //   var expected = expects['default'];
+  //   var actual = strftime(now);
+  //
+  //   assert.strictEqual(actual, expected);
+  //   done();
+  // });
 });
