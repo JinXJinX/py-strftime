@@ -1,131 +1,60 @@
-# strftime.js
+# py-strftime
 
-A node.js package for Steven Levithan's excellent [dateFormat()][dateformat] function.
+Using Python's strftime function in Javascript
 
-[![Build Status](https://travis-ci.org/felixge/node-dateformat.svg)](https://travis-ci.org/felixge/node-dateformat)
+[![Build Status](https://travis-ci.org/JinXJinX/strftime.js.svg?branch=master)](https://travis-ci.org/JinXJinX/strftime.js.svg?branch=master)
 
-## Modifications
-
-* Removed the `Date.prototype.format` method. Sorry folks, but extending native prototypes is for suckers.
-* Added a `module.exports = strftime;` statement at the bottom
-* Added the placeholder `N` to get the ISO 8601 numeric representation of the day of the week
 
 ## Installation
 
 ```bash
-$ npm install strftime
-$ dateformat --help
+$ npm install py-strftime
+$ py-strftime --help
 ```
 
 ## Usage
-
-As taken from Steven's post, modified to match the Modifications listed above:
-```js
-var strftime = require('strftime');
-var now = new Date();
-
-// Basic usage
-strftime(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-// Saturday, June 9th, 2007, 5:46:21 PM
-
-// You can use one of several named masks
-strftime(now, "isoDateTime");
-// 2007-06-09T17:46:21
-
-// ...Or add your own
-strftime.masks.hammerTime = 'HH:MM! "Can\'t touch this!"';
-strftime(now, "hammerTime");
-// 17:46! Can't touch this!
-
-// You can also provide the date as a string
-strftime("Jun 9 2007", "fullDate");
-// Saturday, June 9, 2007
-
-// Note that if you don't include the mask argument,
-// strftime.masks.default is used
-strftime(now);
-// Sat Jun 09 2007 17:46:21
-
-// And if you don't include the date argument,
-// the current date and time is used
-strftime();
-// Sat Jun 09 2007 17:46:22
-
-// You can also skip the date argument (as long as your mask doesn't
-// contain any numbers), in which case the current date/time is used
-strftime("longTime");
-// 5:46:22 PM EST
-
-// And finally, you can convert local time to UTC time. Simply pass in
-// true as an additional argument (no argument skipping allowed in this case):
-strftime(now, "longTime", true);
-// 10:46:21 PM UTC
-
-// ...Or add the prefix "UTC:" or "GMT:" to your mask.
-strftime(now, "UTC:h:MM:ss TT Z");
-// 10:46:21 PM UTC
-
-// You can also get the ISO 8601 week of the year:
-strftime(now, "W");
-// 42
-
-// and also get the ISO 8601 numeric representation of the day of the week:
-strftime(now,"N");
-// 6
+```
+var date = new Date(2020, 0, 1)
+strftime(date, '%c')
+// "Wed Jan 01 00:00:00 2020"
 ```
 
-### Mask options
+### Directives
 
-Mask | Description
----- | -----------
-`d` | Day of the month as digits; no leading zero for single-digit days.
-`dd` | Day of the month as digits; leading zero for single-digit days.
-`ddd` | Day of the week as a three-letter abbreviation.
-`dddd` | Day of the week as its full name.
-`m` | Month as digits; no leading zero for single-digit months.
-`mm` | Month as digits; leading zero for single-digit months.
-`mmm` | Month as a three-letter abbreviation.
-`mmmm` | Month as its full name.
-`yy` | Year as last two digits; leading zero for years less than 10.
-`yyyy` | Year represented by four digits.
-`h` | Hours; no leading zero for single-digit hours (12-hour clock).
-`hh` | Hours; leading zero for single-digit hours (12-hour clock).
-`H` | Hours; no leading zero for single-digit hours (24-hour clock).
-`HH` | Hours; leading zero for single-digit hours (24-hour clock).
-`M` | Minutes; no leading zero for single-digit minutes.
-`MM` | Minutes; leading zero for single-digit minutes.
-`N` | ISO 8601 numeric representation of the day of the week.
-`o` | GMT/UTC timezone offset, e.g. -0500 or +0230.
-`s` | Seconds; no leading zero for single-digit seconds.
-`ss` | Seconds; leading zero for single-digit seconds.
-`S` | The date's ordinal suffix (st, nd, rd, or th). Works well with `d`.
-`l` |  Milliseconds; gives 3 digits.
-`L` | Milliseconds; gives 2 digits.
-`t`	| Lowercase, single-character time marker string: a or p.
-`tt` | Lowercase, two-character time marker string: am or pm.
-`T` | Uppercase, single-character time marker string: A or P.
-`TT` | Uppercase, two-character time marker string: AM or PM.
-`W` | ISO 8601 week number of the year, e.g. 42
-`Z` | US timezone abbreviation, e.g. EST or MDT. With non-US timezones or in the
-`'...'`, `"..."` | Literal character sequence. Surrounding quotes are removed.
-`UTC:` |	Must be the first four characters of the mask. Converts the date from local time to UTC/GMT/Zulu time before applying the mask. The "UTC:" prefix is removed.
+Code | Meaning | Example
+---- | ----------- | ---
+`%a` | Weekday as locale’s abbreviated name. | Mon
+`%A	` | Weekday as locale’s full name. | Monday
+`%w` | Weekday as a decimal number, where 0 is Sunday and 6 is Saturday. | 1
+`%d` | Day of the month as a zero-padded decimal number. | 30
+`%-d` | Day of the month as a decimal number. (Platform specific) | 30
+`%b` | Month as locale’s abbreviated name. | Sep
+`%B` | Month as locale’s full name. | September
+`%m` | Month as a zero-padded decimal number.	| 09
+`%-m` | Month as a decimal number. (Platform specific) | 9
+`%y` | Year without century as a zero-padded decimal number. | 13
+`%Y` | Year with century as a decimal number. | 2013
+`%H` | Hour (24-hour clock) as a zero-padded decimal number.	| 07
+`%-H` | Hour (24-hour clock) as a decimal number. (Platform specific)	| 7
+`%I` | Hour (12-hour clock) as a zero-padded decimal number.	| 07
+`%-I` | Hour (12-hour clock) as a decimal number. (Platform specific)	| 7
+`%p` | Locale’s equivalent of either AM or PM.	| AM
+`%M` | Minute as a zero-padded decimal number.	| 06
+`%-M` | Minute as a decimal number. (Platform specific)	| 6
+`%S` | Second as a zero-padded decimal number.	| 05
+`%-S` | Second as a decimal number. (Platform specific)	| 5
+`%f` | Microsecond as a decimal number, zero-padded on the left.	| 000000
+`%z` |  UTC offset in the form +HHMM or -HHMM (empty string if the the object is naive).
+`%Z` | Time zone name (empty string if the object is naive).
+`%j` | Day of the year as a zero-padded decimal number.	| 273
+`%-j` | Day of the year as a decimal number. (Platform specific)	| 273
+`%U` | Week number of the year (Sunday as the first day of the week) as a zero padded decimal number. All days in a new year preceding the first Sunday are considered to be in week 0. | 39
+`%W` | Week number of the year (Monday as the first day of the week) as a decimal number. All days in a new year preceding the first Monday are considered to be in week 0. | 39
+`%c` | Locale’s appropriate date and time representation.	| Mon Sep 30 07:06:05 2013
+`%x` | Locale’s appropriate date representation.	| 09/30/13
+`%X` | Locale’s appropriate time representation.	| 07:06:05
+`%%` | A literal '%' character.	| %
 
-### Named Formats
-
-Name | Mask | Example
----- | ---- | -------
-`default` | `ddd mmm dd yyyy HH:MM:ss` | Sat Jun 09 2007 17:46:21
-`shortDate` | `m/d/yy` | 6/9/07
-`mediumDate` | `mmm d, yyyy` | Jun 9, 2007
-`longDate` | `mmmm d, yyyy` | June 9, 2007
-`fullDate` | `dddd, mmmm d, yyyy` | Saturday, June 9, 2007
-`shortTime` | `h:MM TT` | 5:46 PM
-`mediumTime` | `h:MM:ss TT` | 5:46:21 PM
-`longTime` | `h:MM:ss TT Z` | 5:46:21 PM EST
-`isoDate` | `yyyy-mm-dd` | 2007-06-09
-`isoTime` | `HH:MM:ss` | 17:46:21
-`isoDateTime` | `yyyy-mm-dd'T'HH:MM:ss` | 2007-06-09T17:46:21
-`isoUtcDateTime` | `UTC:yyyy-mm-dd'T'HH:MM:ss'Z'` | 2007-06-09T22:46:21Z
 
 ### Localization
 Day names, month names and the AM/PM indicators can be localized by
@@ -149,14 +78,6 @@ strftime.i18n = {
 > Notice that only one language is supported at a time and all strings
 > *must* be present in the new value.
 
-### Breaking change in 2.1.0
-- 2.1.0 was published with a breaking change, for those using localized strings.
-- 2.2.0 has been published without the change, to keep packages refering to ^2.0.0 to continue working. This is now branch v2_2.
-- 3.0.* contains the localized AM/PM change.
-
 ## License
 
-(c) 2007-2009 Steven Levithan [stevenlevithan.com][stevenlevithan], MIT license.
-
-[dateformat]: http://blog.stevenlevithan.com/archives/date-time-format
-[stevenlevithan]: http://stevenlevithan.com/
+(c) 2020 JinXJinX, MIT license.

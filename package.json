@@ -1,7 +1,7 @@
 {
-  "name": "strftime",
-  "description": "A node.js package for Steven Levithan's excellent dateFormat() function.",
-  "maintainers": "Felix Geisendörfer <felix@debuggable.com>",
+  "name": "py-strftime",
+  "description": "",
+  "maintainers": "Jinx",
   "homepage": "https://github.com/JinXJinX/strftime.js",
   "author": "JinX",
   "contributors": [
@@ -22,6 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JinXJinX/strftime.js.git"
-  }
+    "url": "git+https://github.com/JinXJinX/strftime.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JinXJinX/strftime.js/issues"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {}
 }

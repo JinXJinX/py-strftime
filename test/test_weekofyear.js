@@ -27,18 +27,12 @@ describe('test week number of the year', function() {
             var real_week_num_monday = strftime(date, "%W")
 
             it(date + 'week num(Sunday first day) wrong. ', function(done) {
-                assert.strictEqual(
-                    String(week_num_sunday_first_day),
-                    real_week_num_sunday,
-                );
+                assert.strictEqual(String(week_num_sunday_first_day), real_week_num_sunday);
                 done();
             });
 
             it(date + 'week num(Monday first day) wrong. ', function(done) {
-                assert.strictEqual(
-                    String(week_num_monday_first_day),
-                    real_week_num_monday,
-                );
+                assert.strictEqual(String(week_num_monday_first_day), real_week_num_monday);
                 done();
             });
 
