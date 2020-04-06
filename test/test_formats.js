@@ -15,8 +15,8 @@ var expects = {
   '%-H': '13',
   '%I': '01',
   '%-I': '1',
-  '%j': '280',
-  '%-j': '280',
+  '%j': '311',
+  '%-j': '311',
   '%m': '11',
   '%-m': '11',
   '%M': '07',
@@ -24,7 +24,7 @@ var expects = {
   '%p': 'PM',
   '%S': '07',
   '%-S': '7',
-  '%U': '40',
+  '%U': '44',
   '%w': '5',
   '%W': '44',
   '%y': '14',
@@ -70,10 +70,10 @@ function timezoneOffset(date) {
 }
 
 describe('dateformat([now], [mask])', function() {
-        var now = new Date(2014, 10, 7, 13, 7, 7);
-        var tzOffset = timezoneOffset(now);
-        _.each(expects, function (value, key) {
-            it('should format `' + key + '` mask', function(done) {
+    var now = new Date(2014, 10, 7, 13, 7, 7);
+    var tzOffset = timezoneOffset(now);
+    _.each(expects, function (value, key) {
+        it('should format `' + key + '` mask', function(done) {
             var expected = expects[key].replace(/%TZ_PREFIX%/, 'GMT')
                                        .replace(/%TZ_OFFSET%/g, tzOffset)
                                        .replace(/GMT\+0000/g, 'UTC');
@@ -82,13 +82,5 @@ describe('dateformat([now], [mask])', function() {
             assert.strictEqual(actual, expected);
             done();
         });
-  })
-  // it('should use `default` mask, when `mask` is empty', function(done) {
-  //   var now = new Date(2014, 10, 26, 13, 19, 44);
-  //   var expected = expects['default'];
-  //   var actual = strftime(now);
-  //
-  //   assert.strictEqual(actual, expected);
-  //   done();
-  // });
+    })
 });
