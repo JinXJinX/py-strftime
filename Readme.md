@@ -2,8 +2,7 @@
 
 Using Python's strftime function in Javascript
 
-[![Build Status](https://travis-ci.org/JinXJinX/strftime.js.svg?branch=master)](https://travis-ci.org/JinXJinX/strftime.js.svg?branch=master)
-
+[![Build Status](https://travis-ci.org/JinXJinX/strftime.js.svg?branch=master)](https://travis-ci.org/JinXJinX/strftime.js)
 
 ## Installation
 
@@ -54,6 +53,8 @@ Code | Meaning | Example
 `%x` | Locale’s appropriate date representation.	| 09/30/13
 `%X` | Locale’s appropriate time representation.	| 07:06:05
 `%%` | A literal '%' character.	| %
+
+Reference: [Python strftime cheat sheet](https://strftime.org)
 
 
 ### Localization

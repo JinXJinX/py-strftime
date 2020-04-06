@@ -1,15 +1,15 @@
 {
   "name": "py-strftime",
   "description": "",
-  "maintainers": "Jinx",
-  "homepage": "https://github.com/JinXJinX/strftime.js",
+  "maintainers": "JinX",
+  "homepage": "https://github.com/JinXJinX/py-strftime",
   "author": "JinX",
   "contributors": [
     "JinX"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
-  "main": "lib/dateformat",
+  "main": "lib/strftime",
   "devDependencies": {
     "underscore": "1.7.0",
     "mocha": "2.0.1"
@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JinXJinX/strftime.js.git"
+    "url": "git+https://github.com/JinXJinX/py-strftime.git"
   },
   "bugs": {
-    "url": "https://github.com/JinXJinX/strftime.js/issues"
+    "url": "https://github.com/JinXJinX/py-strftime/issues"
   },
   "directories": {
     "lib": "lib",
