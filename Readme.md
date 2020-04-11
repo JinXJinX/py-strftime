@@ -1,6 +1,6 @@
 # py-strftime
 
-Using Python's strftime function in Javascript
+Use Python's strftime function in Javascript
 
 [![Build Status](https://travis-ci.org/JinXJinX/py-strftime.svg?branch=master)](https://travis-ci.org/JinXJinX/py-strftime)
 
