@@ -2,7 +2,7 @@
 
 Using Python's strftime function in Javascript
 
-[![Build Status](https://travis-ci.org/JinXJinX/strftime.js.svg?branch=master)](https://travis-ci.org/JinXJinX/strftime.js)
+[![Build Status](https://travis-ci.org/JinXJinX/py-strftime.svg?branch=master)](https://travis-ci.org/JinXJinX/py-strftime)
 
 ## Installation
 
